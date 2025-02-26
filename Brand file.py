@@ -251,10 +251,15 @@ fruits[1] = "blackcurrent"
 #print(fruits)
 
 #Change a range of item value.
-Matunda = ["apple", "banana", "cherry", "kiwi", "mango"]
-Matunda[1:3] = ["blackcurrent", "grapes"]
-#print(Matunda)
-
+#Matunda = ["apple", "banana", "cherry", "kiwi", "mango"]
+#Matunda[0] = "blackcurrent"
+#print(len(Matunda[:]))
+#print(Matunda[1:3])
+#if "mango" in Matunda:
+    #print("IN STOCK!")
+#else:
+    #Available_Stock = Matunda
+    #print(f"OUT OF STOCK!"{})
 #INSERTING LESS ITEMS IN LISTS.
 Matunda = ["apple", "banana", "cherry", "kiwi", "mango"]
 Matunda[1:3] = ["blackcurrent"]
@@ -312,5 +317,76 @@ Matunda = ["apple", "banana", "cherry", "kiwi", "mango"]
 
 #Loop through the index number 'for', range(len()):
 Matunda = ["apple", "banana", "cherry", "kiwi", "mango"]
-for i in range(len(Matunda)):
-  print(Matunda[i])
+#for i in range(len(Matunda)):
+  #print(Matunda[i])
+
+  # MY FIRST APPLICATION. QS ABBIUD BETAWA
+#Xmpl. 1 with errors
+#Matunda = ["apple", "banana", "cherry", "kiwi", "mango"]
+#Matunda[0] = "blackcurrent"
+#print(len(Matunda[:]))
+#print(Matunda[1:3])
+#if "mango" in Matunda:
+   # print("IN STOCK!")
+#else:
+    #Available_Stock = Matunda
+    #print(f"OUT OF STOCK!"{})
+
+    #Xmpl. 2 with syntax errors.
+#Matunda = ["apple", "banana", "cherry", "kiwi", "mango"]
+#Matunda[0] = "blackcurrent"
+#Current_Inventory = Matunda[:] = Matunda
+#print(Matunda[:])
+#print(f"All item in Stock: {len(Matunda)}")
+
+#Selected_Items = Current_Inventory - Matunda[:]
+
+#print(f"Selected Items on Cart: {Selected_Items}")
+
+#if "blackcurrent" in Matunda[:3]:
+    #print(f"Purchase of {Matunda[:3]} Ready for Payout!")
+
+#elif Matunda[:3] not in Matunda[1:3]:
+    #print("NOT in STOCK!")
+
+#else:
+    #Available_Stock = Matunda[1:3]
+    #print(Available_Stock)
+
+    #Xmpl. 3 with corrected syntax errors.
+
+Matunda = {
+    "apple": 10,
+    "banana": 5,
+    "cherry": 8,                #point of updating stocks. use dict {} function
+    "kiwi": 6,
+    "mango": 12
+}
+
+Matunda["blackcurrent"] = 10       # Assign a stock quantity.
+
+Selected_Items = {"mango": 8}     # Simulate selected items with required quantity(or use user input)
+
+available = {item: qty for item, qty in Selected_Items.items() if item in Matunda and Matunda[item] >= qty}  # Check if selected items are in stock
+not_available = {item: qty for item, qty in Selected_Items.items() if item not in Matunda or Matunda[item] < qty}
+not_in_inventory = {item: qty for item, qty in Selected_Items.items() if item not in Matunda}
+
+print(f"OUR PRODUCTS!: {Matunda}")          #All Available Stock.
+
+print(f"Selected Items on Cart: {Selected_Items}")
+
+Current_Inventory = Matunda.copy()             #Current inventory snapshot.
+
+print(f"TOTAL items in Stock: {sum(Matunda.values())}") 
+
+if available:
+    print(f"Purchase of {available} is Ready for Payout!")  #Check stock status.
+    for item, qty in available.items():
+        Matunda[item] -= qty
+if not_available:
+    print(f"NOT in STOCK: {not_available}")   
+if not_in_inventory:
+    print(f"Item Not in Inventory: {not_in_inventory}")
+    
+print(f"Updated Inventory: {Matunda}")  # Print updated inventory
+
